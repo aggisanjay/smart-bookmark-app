@@ -90,14 +90,17 @@ export default function BookmarkList({ userId }: { userId: string }) {
           filter: `user_id=eq.${userId}`,
         },
         (payload: RealtimePostgresChangesPayload<Bookmark>) => {
-          console.log('📝 UPDATE event received:', payload.new)
-          if (mounted) {
-            setBookmarks((current) =>
-              current.map((bookmark) =>
-                bookmark.id === payload.new.id ? (payload.new as Bookmark) : bookmark
-              )
-            )
-          }
+           const newBookmark = payload.new as Bookmark
+
+  console.log('📝 UPDATE event received:', newBookmark)
+
+  if (mounted) {
+    setBookmarks((current) =>
+      current.map((bookmark) =>
+        bookmark.id === newBookmark.id ? newBookmark : bookmark
+      )
+    )
+  }
         }
       )
       .subscribe(async (status) => {
