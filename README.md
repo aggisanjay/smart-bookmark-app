@@ -1,8 +1,8 @@
-# 🔖 Smart Bookmarks
+# 🔖 Smart Bookmark
 
 A modern, real-time bookmark manager built with Next.js 14, Supabase, and Tailwind CSS. Save, sync, and access your favorite links from anywhere with instant updates across all your devices.
 
-[![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Supabase](https://img.shields.io/badge/Supabase-Latest-green?style=flat-square&logo=supabase)](https://supabase.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
@@ -19,25 +19,24 @@ A modern, real-time bookmark manager built with Next.js 14, Supabase, and Tailwi
 
 ## 🚀 Live Demo
 
-**[View Live Demo →](#)** *(Add your Vercel deployment URL here)*
+**[View Live Demo →](#)** *(https://smart-bookmark-app-tawny-one.vercel.app/)*
 
 ## 📸 Screenshots
 
 ### Landing Page
-![Landing Page](./screenshots/landing.png)
+
+<img width="1240" height="877" alt="image" src="https://github.com/user-attachments/assets/2c1a728c-2d86-4470-8e35-b55a8c724de5" />
+
 
 ### Bookmarks Dashboard
-![Dashboard](./screenshots/dashboard.png)
 
-### Real-time Sync
-![Real-time Sync](./screenshots/realtime.gif)
+<img width="1240" height="845" alt="image" src="https://github.com/user-attachments/assets/9499b57e-2a5d-4072-b09c-03c2dae9b78d" />
 
-*Note: Add screenshots to a `/screenshots` folder in your repo*
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **Next.js 14** - React framework with App Router
+- **Next.js 16** - React framework with App Router
 - **TypeScript** - Type-safe JavaScript
 - **Tailwind CSS 4** - Utility-first CSS framework
 - **React 19** - UI library
@@ -191,51 +190,6 @@ smart-bookmark-app/
 ├── tsconfig.json                 # TypeScript config
 └── README.md                     # This file
 ```
-
-## 🎨 Key Features Implementation
-
-### Real-time Sync
-
-Bookmarks sync instantly across all devices using Supabase Realtime:
-
-
-const channel = supabase
-  .channel('public:bookmarks')
-  .on('postgres_changes', {
-    event: 'INSERT',
-    schema: 'public',
-    table: 'bookmarks',
-    filter: `user_id=eq.${userId}`,
-  }, (payload) => {
-    setBookmarks(current => [payload.new, ...current])
-  })
-  .subscribe()
-
-
-### Optimistic Updates
-
-Instant UI feedback with automatic error handling:
-
-
-// Remove from UI immediately
-setBookmarks(current => current.filter(b => b.id !== id))
-
-// Delete from database
-const { error } = await supabase.from('bookmarks').delete().eq('id', id)
-
-// Restore on error
-if (error) setBookmarks(previousBookmarks)
-
-
-### Row Level Security
-
-Users can only access their own bookmarks:
-
-
-CREATE POLICY "Users can view own bookmarks"
-  ON public.bookmarks FOR SELECT
-  USING (auth.uid() = user_id);
-
 
 ## 🐛 Problems Encountered & Solutions
 
