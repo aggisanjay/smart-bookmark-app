@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import { User } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
+import type { AuthChangeEvent, Session } from '@supabase/supabase-js'
 
 export default function Home() {
   const [user, setUser] = useState<User | null>(null)
@@ -25,12 +26,15 @@ export default function Home() {
 
     getUser()
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+    (_event: AuthChangeEvent, session: Session | null) => {
       setUser(session?.user ?? null)
+
       if (session?.user) {
         router.push('/bookmarks')
       }
-    })
+    }
+  )
 
     return () => subscription.unsubscribe()
   }, [router, supabase])
