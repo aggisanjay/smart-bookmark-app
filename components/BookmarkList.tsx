@@ -5,7 +5,9 @@
 
 import { useEffect, useState } from 'react'
 import { createClient, Bookmark } from '@/lib/supabase'
-import type { RealtimePostgresChangesPayload, RealtimeChannelStatus } from '@supabase/supabase-js'
+import type { RealtimePostgresChangesPayload } from '@supabase/supabase-js'
+import type { RealtimeChannelStatus } from '@supabase/supabase-js'
+
 
 
 
