@@ -67,15 +67,18 @@ export default function BookmarkList({ userId }: { userId: string }) {
           filter: `user_id=eq.${userId}`,
         },
         (payload: RealtimePostgresChangesPayload<Bookmark>) => {
-          console.log('🗑️ DELETE event received:', payload.old)
-          console.log('🗑️ Deleting bookmark with ID:', payload.old.id)
-          if (mounted) {
-            setBookmarks((current) => {
-              const filtered = current.filter((bookmark) => bookmark.id !== payload.old.id)
-              console.log('🗑️ Bookmarks after delete:', filtered.length)
-              return filtered
-            })
-          }
+           const oldBookmark = payload.old as Bookmark
+
+       console.log('🗑️ DELETE event received:', oldBookmark)
+
+  if (mounted) {
+    setBookmarks((current) => {
+      const filtered = current.filter(
+        (bookmark) => bookmark.id !== oldBookmark.id
+      )
+      return filtered
+    })
+  }
         }
       )
       .on(
