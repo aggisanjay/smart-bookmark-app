@@ -14,7 +14,7 @@ A modern, real-time bookmark manager built with Next.js 16, Supabase, and Tailwi
 - 🔒 **Private & Secure** - Your bookmarks are yours alone (Row Level Security)
 - 🎨 **Modern UI** - Beautiful dark theme with smooth animations
 - 📱 **Fully Responsive** - Works perfectly on desktop, tablet, and mobile
-- 🚀 **Fast & Lightweight** - Optimized performance with Next.js 14
+- 🚀 **Fast & Lightweight** - Optimized performance with Next.js 16
 - ✅ **Optimistic Updates** - Instant feedback with automatic rollback on errors
 
 ## 🚀 Live Demo
