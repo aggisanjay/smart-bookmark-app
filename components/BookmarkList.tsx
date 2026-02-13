@@ -5,7 +5,8 @@
 
 import { useEffect, useState } from 'react'
 import { createClient, Bookmark } from '@/lib/supabase'
-import type { RealtimePostgresChangesPayload } from '@supabase/supabase-js'
+import type { RealtimePostgresChangesPayload, RealtimeChannelStatus } from '@supabase/supabase-js'
+
 
 
 export default function BookmarkList({ userId }: { userId: string }) {
@@ -103,7 +104,7 @@ export default function BookmarkList({ userId }: { userId: string }) {
   }
         }
       )
-      .subscribe(async (status) => {
+      .subscribe(async (status: RealtimeChannelStatus) => {
         console.log('📡 Channel status changed:', status)
         if (mounted) {
           setRealtimeStatus(status)
