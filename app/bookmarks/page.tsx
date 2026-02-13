@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import BookmarkList from '@/components/BookmarkList'
 import AddBookmark from '@/components/AddBookmark'
 import Header from '@/components/Header'
+import type { AuthChangeEvent, Session } from '@supabase/supabase-js'
 
 export default function BookmarksPage() {
   const [user, setUser] = useState<User | null>(null)
@@ -30,12 +31,15 @@ export default function BookmarksPage() {
 
     getUser()
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null)
-      if (!session?.user) {
-        router.push('/')
-      }
-    })
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+  (_event: AuthChangeEvent, session: Session | null) => {
+    setUser(session?.user ?? null)
+
+    if (!session?.user) {
+      router.push('/')
+    }
+  }
+)
 
     return () => subscription.unsubscribe()
   }, [router, supabase])
