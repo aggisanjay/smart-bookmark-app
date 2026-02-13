@@ -1,6 +1,6 @@
 # 🔖 Smart Bookmark
 
-A modern, real-time bookmark manager built with Next.js 14, Supabase, and Tailwind CSS. Save, sync, and access your favorite links from anywhere with instant updates across all your devices.
+A modern, real-time bookmark manager built with Next.js 16, Supabase, and Tailwind CSS. Save, sync, and access your favorite links from anywhere with instant updates across all your devices.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
